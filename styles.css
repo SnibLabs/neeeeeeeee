@@ -1,0 +1,131 @@
+:root {
+    --primary-bg: hsl(230, 40%, 7%);
+    --star-color: hsl(220, 80%, 90%);
+    --player-ship-gradient: linear-gradient(135deg, hsl(180, 90%, 70%) 60%, hsl(230, 90%, 70%) 100%);
+    --enemy-ship-gradient: linear-gradient(135deg, hsl(0, 90%, 65%) 60%, hsl(40, 90%, 55%) 100%);
+    --projectile-gradient: linear-gradient(90deg, #fffb96 0%, #ff781f 100%);
+    --powerup-gradient: radial-gradient(circle, #8fffd7 0%, #1fffa0 100%);
+    --ui-border: 2px solid hsl(230, 80%, 30%);
+    --ui-bg: hsla(230, 40%, 20%, 0.92);
+    --ui-text: hsl(220, 30%, 96%);
+    --ui-glow: 0 0 6px 2px hsl(190, 90%, 70%), 0 0 12px 2px hsl(230, 90%, 60%);
+    --warning-color: hsl(0, 90%, 60%);
+    --success-color: hsl(140, 90%, 60%);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--primary-bg);
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    background: radial-gradient(circle at 40% 30%, hsl(230,60%,14%) 0%, hsl(230, 35%, 10%) 90%);
+    overflow: hidden;
+    position: relative;
+}
+
+#game-canvas {
+    margin-top: 36px;
+    background: transparent;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px 0 hsla(230, 80%, 10%, 0.5), 0 0 0 4px hsla(240,0%,0%,0.06);
+    image-rendering: optimizeSpeed;
+    display: block;
+    max-width: 98vw;
+    max-height: 78vh;
+    transition: box-shadow 0.2s;
+}
+
+#game-canvas:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--success-color), 0 10px 40px 0 hsla(230, 90%, 60%, 0.1);
+}
+
+#ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    max-width: 98vw;
+    height: 600px;
+    pointer-events: none;
+    z-index: 3;
+    margin-top: 36px;
+    color: var(--ui-text);
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-size: 20px;
+    text-shadow: 0 2px 8px hsl(230, 30%, 30%);
+}
+
+.ui-panel {
+    background: var(--ui-bg);
+    border: var(--ui-border);
+    border-radius: 18px;
+    box-shadow: 0 0 16px 2px hsl(230, 80%, 10%, 0.21);
+    padding: 28px 44px 28px 44px;
+    color: var(--ui-text);
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+    text-align: center;
+    pointer-events: auto;
+}
+
+.ui-panel h1 {
+    font-size: 2.7rem;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.06em;
+    text-shadow: var(--ui-glow);
+}
+
+.ui-panel .ui-btn {
+    margin-top: 16px;
+    padding: 12px 36px;
+    background: linear-gradient(90deg, hsl(200,90%,60%) 0%, hsl(230,90%,50%) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px hsla(230, 80%, 40%, 0.14);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.13s;
+    pointer-events: auto;
+}
+
+.ui-panel .ui-btn:active {
+    background: linear-gradient(90deg, hsl(170,90%,50%) 0%, hsl(230,90%,55%) 100%);
+    transform: scale(0.97);
+}
+
+.ui-panel .ui-btn:focus {
+    outline: 2px solid var(--success-color);
+    box-shadow: 0 0 0 4px var(--success-color);
+}
+
+@media (max-width: 900px) {
+    #game-canvas, #ui-overlay {
+        width: 98vw !important;
+        height: 66vw !important;
+        max-height: 70vh;
+        left: 1vw;
+        top: 0;
+        margin-top: 18px;
+    }
+    .ui-panel {
+        min-width: 80vw;
+        padding: 18px 4vw;
+    }
+}
